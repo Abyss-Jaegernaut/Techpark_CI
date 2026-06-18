@@ -1,21 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
-        <record id="action_it_parc_placeholder" model="ir.actions.client">
-            <field name="name">IT Parc</field>
-            <field name="tag">display_notification</field>
-            <field name="params" eval="{
-                'title': 'IT Parc',
-                'message': 'Le module IT Parc est installe.',
-                'type': 'info',
-                'sticky': False,
-            }"/>
-        </record>
-
         <menuitem
             id="menu_it_parc_root"
             name="IT Parc"
-            action="action_it_parc_placeholder"
+            action="action_it_equipement"
+            groups="it_parc.group_it_technicien,it_parc.group_it_manager"
             sequence="35"/>
+
+        <menuitem
+            id="menu_it_parc_equipements"
+            name="Equipements"
+            parent="menu_it_parc_root"
+            action="action_it_equipement"
+            groups="it_parc.group_it_technicien,it_parc.group_it_manager"
+            sequence="10"/>
+
+        <menuitem
+            id="menu_it_parc_interventions"
+            name="Interventions"
+            parent="menu_it_parc_root"
+            action="action_it_intervention"
+            groups="it_parc.group_it_technicien,it_parc.group_it_manager"
+            sequence="20"/>
+
+        <menuitem
+            id="menu_it_parc_contrats"
+            name="Contrats"
+            parent="menu_it_parc_root"
+            action="action_it_contrat"
+            groups="it_parc.group_it_technicien,it_parc.group_it_manager"
+            sequence="30"/>
+
+        <menuitem
+            id="menu_it_parc_alertes"
+            name="Alertes"
+            parent="menu_it_parc_root"
+            action="action_it_alerte"
+            groups="it_parc.group_it_technicien,it_parc.group_it_manager"
+            sequence="40"/>
     </data>
 </odoo>

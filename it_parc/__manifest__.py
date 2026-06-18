@@ -27,6 +27,10 @@
     'data': [
         'security/parc_securite.xml',
         'security/ir.model.access.csv',
+        'views/equipement_views.xml',
+        'views/intervention_views.xml',
+        'views/contrat_views.xml',
+        'views/alerte_views.xml',
         'views/menu_views.xml',
     ],
     'assets': {

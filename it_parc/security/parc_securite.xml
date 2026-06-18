@@ -1,27 +1,115 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data noupdate="0">
-        <!-- Catégorie de sécurité -->
         <record id="module_category_it_parc" model="ir.module.category">
             <field name="name">Parc Informatique</field>
-            <field name="description">Gestion des accès au module Parc Informatique.</field>
+            <field name="description">Gestion des acces au module Parc Informatique.</field>
             <field name="sequence">10</field>
         </record>
 
-        <!-- Groupe : IT Technicien -->
         <record id="group_it_technicien" model="res.groups">
             <field name="name">IT Technicien</field>
             <field name="category_id" ref="module_category_it_parc"/>
             <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
-            <field name="comment">Peut consulter le parc et créer des interventions.</field>
+            <field name="comment">Peut consulter le parc et creer des interventions.</field>
         </record>
 
-        <!-- Groupe : IT Manager -->
         <record id="group_it_manager" model="res.groups">
             <field name="name">IT Manager</field>
             <field name="category_id" ref="module_category_it_parc"/>
             <field name="implied_ids" eval="[(4, ref('group_it_technicien'))]"/>
-            <field name="comment">Accès complet à toutes les fonctionnalités du parc informatique.</field>
+            <field name="users" eval="[(4, ref('base.user_admin'))]"/>
+            <field name="comment">Acces complet a toutes les fonctionnalites du parc informatique.</field>
+        </record>
+
+        <record id="rule_it_equipement_technicien" model="ir.rule">
+            <field name="name">IT Parc - Equipements technicien</field>
+            <field name="model_id" ref="model_it_equipement"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+            <field name="groups" eval="[(4, ref('group_it_technicien'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="False"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+        </record>
+
+        <record id="rule_it_equipement_manager" model="ir.rule">
+            <field name="name">IT Parc - Equipements manager</field>
+            <field name="model_id" ref="model_it_equipement"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+            <field name="groups" eval="[(4, ref('group_it_manager'))]"/>
+        </record>
+
+        <record id="rule_it_affectation_technicien" model="ir.rule">
+            <field name="name">IT Parc - Affectations technicien</field>
+            <field name="model_id" ref="model_it_affectation"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+            <field name="groups" eval="[(4, ref('group_it_technicien'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="False"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+        </record>
+
+        <record id="rule_it_affectation_manager" model="ir.rule">
+            <field name="name">IT Parc - Affectations manager</field>
+            <field name="model_id" ref="model_it_affectation"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+            <field name="groups" eval="[(4, ref('group_it_manager'))]"/>
+        </record>
+
+        <record id="rule_it_intervention_technicien" model="ir.rule">
+            <field name="name">IT Parc - Interventions technicien</field>
+            <field name="model_id" ref="model_it_intervention"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+            <field name="groups" eval="[(4, ref('group_it_technicien'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="False"/>
+        </record>
+
+        <record id="rule_it_intervention_manager" model="ir.rule">
+            <field name="name">IT Parc - Interventions manager</field>
+            <field name="model_id" ref="model_it_intervention"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+            <field name="groups" eval="[(4, ref('group_it_manager'))]"/>
+        </record>
+
+        <record id="rule_it_contrat_technicien" model="ir.rule">
+            <field name="name">IT Parc - Contrats technicien</field>
+            <field name="model_id" ref="model_it_contrat"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+            <field name="groups" eval="[(4, ref('group_it_technicien'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="False"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+        </record>
+
+        <record id="rule_it_contrat_manager" model="ir.rule">
+            <field name="name">IT Parc - Contrats manager</field>
+            <field name="model_id" ref="model_it_contrat"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+            <field name="groups" eval="[(4, ref('group_it_manager'))]"/>
+        </record>
+
+        <record id="rule_it_alerte_technicien" model="ir.rule">
+            <field name="name">IT Parc - Alertes technicien</field>
+            <field name="model_id" ref="model_it_alerte"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+            <field name="groups" eval="[(4, ref('group_it_technicien'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+        </record>
+
+        <record id="rule_it_alerte_manager" model="ir.rule">
+            <field name="name">IT Parc - Alertes manager</field>
+            <field name="model_id" ref="model_it_alerte"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+            <field name="groups" eval="[(4, ref('group_it_manager'))]"/>
         </record>
     </data>
 </odoo>

@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_it_equipement_tree" model="ir.ui.view">
+        <field name="name">it.equipement.list</field>
+        <field name="model">it.equipement</field>
+        <field name="arch" type="xml">
+            <list string="Equipements">
+                <field name="code"/>
+                <field name="name"/>
+                <field name="asset_type"/>
+                <field name="serial_no"/>
+                <field name="employee_id"/>
+                <field name="department_id"/>
+                <field name="site"/>
+                <field name="warranty_date"/>
+                <field name="state"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_it_equipement_form" model="ir.ui.view">
+        <field name="name">it.equipement.form</field>
+        <field name="model">it.equipement</field>
+        <field name="arch" type="xml">
+            <form string="Equipement">
+                <header>
+                    <button name="action_assign" string="Affecter" type="object" class="btn-primary" invisible="state != 'draft'"/>
+                    <button name="action_set_maintenance" string="Maintenance" type="object" invisible="state not in ('assigned', 'draft')"/>
+                    <button name="action_retire" string="Retirer" type="object" invisible="state == 'retired'"/>
+                    <button name="action_reset_draft" string="Remettre en brouillon" type="object" invisible="state == 'draft'"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,assigned,maintenance,retired"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1><field name="name"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="code"/>
+                            <field name="asset_type"/>
+                            <field name="serial_no"/>
+                            <field name="model"/>
+                            <field name="category_id"/>
+                        </group>
+                        <group>
+                            <field name="employee_id"/>
+                            <field name="department_id"/>
+                            <field name="site"/>
+                            <field name="location"/>
+                            <field name="company_id"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Achat et garantie">
+                            <group>
+                                <field name="partner_id"/>
+                                <field name="purchase_order_id"/>
+                                <field name="invoice_id"/>
+                                <field name="purchase_date"/>
+                                <field name="purchase_value"/>
+                                <field name="currency_id"/>
+                                <field name="warranty_date"/>
+                                <field name="warranty_days_left"/>
+                                <field name="is_warranty_expired"/>
+                            </group>
+                        </page>
+                        <page string="Affectations">
+                            <field name="assignment_ids" readonly="1">
+                                <list>
+                                    <field name="employee_id"/>
+                                    <field name="department_id"/>
+                                    <field name="date_start"/>
+                                    <field name="date_end"/>
+                                    <field name="state"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Interventions">
+                            <field name="intervention_ids" readonly="1">
+                                <list>
+                                    <field name="name"/>
+                                    <field name="intervention_type"/>
+                                    <field name="date_start"/>
+                                    <field name="date_end"/>
+                                    <field name="duration_hours"/>
+                                    <field name="cost"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Contrats">
+                            <field name="contract_ids" readonly="1">
+                                <list>
+                                    <field name="name"/>
+                                    <field name="partner_id"/>
+                                    <field name="date_start"/>
+                                    <field name="date_end"/>
+                                    <field name="state"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Notes">
+                            <field name="note"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_it_equipement_search" model="ir.ui.view">
+        <field name="name">it.equipement.search</field>
+        <field name="model">it.equipement</field>
+        <field name="arch" type="xml">
+            <search string="Equipements">
+                <field name="name"/>
+                <field name="code"/>
+                <field name="serial_no"/>
+                <field name="employee_id"/>
+                <field name="department_id"/>
+                <filter string="Affectes" name="assigned" domain="[('state', '=', 'assigned')]"/>
+                <filter string="En maintenance" name="maintenance" domain="[('state', '=', 'maintenance')]"/>
+                <filter string="Garantie expiree" name="warranty_expired" domain="[('is_warranty_expired', '=', True)]"/>
+                <group expand="0" string="Regrouper par">
+                    <filter string="Etat" name="group_state" context="{'group_by': 'state'}"/>
+                    <filter string="Type" name="group_type" context="{'group_by': 'asset_type'}"/>
+                    <filter string="Departement" name="group_department" context="{'group_by': 'department_id'}"/>
+                    <filter string="Site" name="group_site" context="{'group_by': 'site'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_it_equipement" model="ir.actions.act_window">
+        <field name="name">Equipements</field>
+        <field name="res_model">it.equipement</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="view_it_equipement_search"/>
+        <field name="context">{'default_asset_type': 'computer'}</field>
+    </record>
+</odoo>
