@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="action_it_parc_placeholder" model="ir.actions.client">
+            <field name="name">IT Parc</field>
+            <field name="tag">display_notification</field>
+            <field name="params" eval="{
+                'title': 'IT Parc',
+                'message': 'Le module IT Parc est installe.',
+                'type': 'info',
+                'sticky': False,
+            }"/>
+        </record>
+
+        <menuitem
+            id="menu_it_parc_root"
+            name="IT Parc"
+            action="action_it_parc_placeholder"
+            sequence="35"/>
+    </data>
+</odoo>
