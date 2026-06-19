@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_report_it_equipement_fiche" model="ir.actions.report">
+        <field name="name">Fiche equipement</field>
+        <field name="model">it.equipement</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">it_parc.report_it_equipement_fiche</field>
+        <field name="report_file">it_parc.report_it_equipement_fiche</field>
+        <field name="binding_model_id" ref="model_it_equipement"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <record id="action_report_it_inventaire" model="ir.actions.report">
+        <field name="name">Inventaire parc informatique</field>
+        <field name="model">it.equipement</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">it_parc.report_it_inventaire</field>
+        <field name="report_file">it_parc.report_it_inventaire</field>
+        <field name="binding_model_id" ref="model_it_equipement"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <record id="action_report_it_maintenance_history" model="ir.actions.report">
+        <field name="name">Historique maintenances</field>
+        <field name="model">it.intervention</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">it_parc.report_it_maintenance_history</field>
+        <field name="report_file">it_parc.report_it_maintenance_history</field>
+        <field name="binding_model_id" ref="model_it_intervention"/>
+        <field name="binding_type">report</field>
+    </record>
+</odoo>

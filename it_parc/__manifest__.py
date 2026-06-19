@@ -37,6 +37,8 @@
         'views/intervention_views.xml',
         'views/contrat_views.xml',
         'views/alerte_views.xml',
+        'report/it_parc_reports.xml',
+        'report/it_parc_report_templates.xml',
         'views/menu_views.xml',
     ],
     'demo': [
