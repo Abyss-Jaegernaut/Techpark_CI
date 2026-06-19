@@ -24,6 +24,7 @@
             <form string="Contrat">
                 <header>
                     <button name="action_activate" string="Activer" type="object" class="btn-primary" invisible="state != 'draft'"/>
+                    <button name="%(it_parc.action_it_renouvellement_contrat_wizard)d" string="Renouveler" type="action" context="{'default_contract_id': id}" invisible="state == 'closed'"/>
                     <button name="action_mark_expired" string="Marquer expire" type="object" invisible="state == 'expired'"/>
                     <button name="action_close" string="Cloturer" type="object" invisible="state == 'closed'"/>
                     <field name="state" widget="statusbar" statusbar_visible="draft,active,expired,closed"/>

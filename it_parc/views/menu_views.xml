@@ -47,5 +47,28 @@
             action="action_it_alerte"
             groups="it_parc.group_it_technicien,it_parc.group_it_manager"
             sequence="40"/>
+
+        <menuitem
+            id="menu_it_parc_operations"
+            name="Operations"
+            parent="menu_it_parc_root"
+            groups="it_parc.group_it_manager"
+            sequence="50"/>
+
+        <menuitem
+            id="menu_it_parc_import_csv"
+            name="Importer CSV"
+            parent="menu_it_parc_operations"
+            action="action_it_import_csv_wizard"
+            groups="it_parc.group_it_manager"
+            sequence="10"/>
+
+        <menuitem
+            id="menu_it_parc_scan_alertes"
+            name="Scanner les alertes"
+            parent="menu_it_parc_operations"
+            action="action_it_scan_alertes_wizard"
+            groups="it_parc.group_it_manager"
+            sequence="20"/>
     </data>
 </odoo>

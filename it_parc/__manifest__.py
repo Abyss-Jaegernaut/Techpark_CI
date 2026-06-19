@@ -27,6 +27,10 @@
     'data': [
         'security/parc_securite.xml',
         'security/ir.model.access.csv',
+        'wizards/reaffectation_wizard_views.xml',
+        'wizards/renouvellement_contrat_wizard_views.xml',
+        'wizards/scan_alertes_wizard_views.xml',
+        'wizards/import_csv_wizard_views.xml',
         'views/equipement_views.xml',
         'views/affectation_views.xml',
         'views/intervention_views.xml',
