@@ -51,6 +51,7 @@
             <form string="Equipement">
                 <header>
                     <button name="action_assign" string="Affecter" type="object" class="btn-primary" invisible="state != 'draft'"/>
+                    <button name="%(it_parc.action_report_it_equipement_fiche)d" string="Fiche PDF" type="action"/>
                     <button name="%(it_parc.action_it_reaffectation_wizard)d" string="Reaffecter" type="action" context="{'default_equipment_id': id}" invisible="state == 'retired'"/>
                     <button name="action_set_maintenance" string="Maintenance" type="object" invisible="state not in ('assigned', 'draft')"/>
                     <button name="action_retire" string="Retirer" type="object" invisible="state == 'retired'"/>

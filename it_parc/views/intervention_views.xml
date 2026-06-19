@@ -35,6 +35,9 @@
         <field name="model">it.intervention</field>
         <field name="arch" type="xml">
             <form string="Intervention">
+                <header>
+                    <button name="%(it_parc.action_report_it_maintenance_history)d" string="Historique PDF" type="action"/>
+                </header>
                 <sheet>
                     <div class="oe_title">
                         <label for="name"/>
