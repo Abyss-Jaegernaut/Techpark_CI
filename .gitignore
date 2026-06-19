@@ -241,7 +241,3 @@ sessions/
 venv*/
 odoo-*/
 odoo-18.0+e.20241230/
-
-# README non publie pour ce premier push
-README.md
-**/README.md
