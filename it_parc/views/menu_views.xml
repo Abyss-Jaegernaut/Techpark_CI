@@ -70,5 +70,13 @@
             action="action_it_scan_alertes_wizard"
             groups="it_parc.group_it_manager"
             sequence="20"/>
+
+        <menuitem
+            id="menu_it_parc_export_excel"
+            name="Exporter Excel"
+            parent="menu_it_parc_operations"
+            action="action_it_export_excel_wizard"
+            groups="it_parc.group_it_manager"
+            sequence="30"/>
     </data>
 </odoo>

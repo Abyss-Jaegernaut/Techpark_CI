@@ -13,3 +13,4 @@ access_it_reaffectation_wizard_manager,it.reaffectation.wizard manager,model_it_
 access_it_renouvellement_contrat_wizard_manager,it.renouvellement.contrat.wizard manager,model_it_renouvellement_contrat_wizard,it_parc.group_it_manager,1,1,1,1
 access_it_scan_alertes_wizard_manager,it.scan.alertes.wizard manager,model_it_scan_alertes_wizard,it_parc.group_it_manager,1,1,1,1
 access_it_import_csv_wizard_manager,it.import.csv.wizard manager,model_it_import_csv_wizard,it_parc.group_it_manager,1,1,1,1
+access_it_export_excel_wizard_manager,it.export.excel.wizard manager,model_it_export_excel_wizard,it_parc.group_it_manager,1,1,1,1
