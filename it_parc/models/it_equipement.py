@@ -148,3 +148,36 @@ class ItEquipement(models.Model):
 
     def _close_open_assignments(self):
         self.mapped('assignment_ids').filtered(lambda assignment: assignment.state == 'active').action_close()
+
+    def action_open_assignments(self):
+        self.ensure_one()
+        return {
+            'type': 'ir.actions.act_window',
+            'name': _("Affectations"),
+            'res_model': 'it.affectation',
+            'view_mode': 'list,form',
+            'domain': [('equipment_id', '=', self.id)],
+            'context': {'default_equipment_id': self.id},
+        }
+
+    def action_open_interventions(self):
+        self.ensure_one()
+        return {
+            'type': 'ir.actions.act_window',
+            'name': _("Interventions"),
+            'res_model': 'it.intervention',
+            'view_mode': 'list,form,calendar',
+            'domain': [('parc_equipment_id', '=', self.id)],
+            'context': {'default_parc_equipment_id': self.id},
+        }
+
+    def action_open_alerts(self):
+        self.ensure_one()
+        return {
+            'type': 'ir.actions.act_window',
+            'name': _("Alertes"),
+            'res_model': 'it.alerte',
+            'view_mode': 'list,form',
+            'domain': [('equipment_id', '=', self.id)],
+            'context': {'default_equipment_id': self.id},
+        }
