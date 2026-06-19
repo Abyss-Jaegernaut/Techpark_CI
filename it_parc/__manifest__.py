@@ -47,7 +47,8 @@
     ],
     'assets': {
         'web.assets_backend': [
-            # OWL components will go here later
+            'it_parc/static/src/js/dashboard.js',
+            'it_parc/static/src/xml/dashboard.xml',
         ],
     },
     'installable': True,

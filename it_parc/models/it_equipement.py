@@ -181,3 +181,38 @@ class ItEquipement(models.Model):
             'domain': [('equipment_id', '=', self.id)],
             'context': {'default_equipment_id': self.id},
         }
+
+    @api.model
+    def get_dashboard_data(self):
+        equipment_model = self.env['it.equipement']
+        intervention_model = self.env['it.intervention']
+        contract_model = self.env['it.contrat']
+        alert_model = self.env['it.alerte']
+        total = equipment_model.search_count([])
+        assigned = equipment_model.search_count([('state', '=', 'assigned')])
+        maintenance = equipment_model.search_count([('state', '=', 'maintenance')])
+        retired = equipment_model.search_count([('state', '=', 'retired')])
+        open_alerts = alert_model.search_count([('state', '=', 'open')])
+        expiring_contracts = contract_model.search_count([('days_left', '<=', 60), ('state', 'in', ('draft', 'active'))])
+        maintenance_cost = sum(intervention_model.search([]).mapped('cost'))
+        by_type = []
+        for value, label in self._fields['asset_type'].selection:
+            count = equipment_model.search_count([('asset_type', '=', value)])
+            if count:
+                by_type.append({'label': label, 'count': count})
+        return {
+            'kpis': {
+                'total': total,
+                'assigned': assigned,
+                'maintenance': maintenance,
+                'open_alerts': open_alerts,
+                'expiring_contracts': expiring_contracts,
+                'maintenance_cost': maintenance_cost,
+            },
+            'states': {
+                'assigned': assigned,
+                'maintenance': maintenance,
+                'retired': retired,
+            },
+            'by_type': by_type,
+        }
