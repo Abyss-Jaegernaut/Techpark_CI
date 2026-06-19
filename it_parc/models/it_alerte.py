@@ -112,3 +112,11 @@ class ItAlerte(models.Model):
                     'message': self._alert_message(_("Le contrat"), days_left),
                 })
         return created
+
+    def cron_scan_alerts(self):
+        params = self.env['ir.config_parameter'].sudo()
+        warranty_delay = int(params.get_param('it_parc.warranty_alert_delay_days', default=30))
+        contract_delay = int(params.get_param('it_parc.contract_alert_delay_days', default=60))
+        self.scan_warranty_alerts(warranty_delay)
+        self.scan_contract_alerts(contract_delay)
+        return True

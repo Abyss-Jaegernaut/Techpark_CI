@@ -27,6 +27,7 @@
     'data': [
         'security/parc_securite.xml',
         'security/ir.model.access.csv',
+        'data/it_parc_data.xml',
         'wizards/reaffectation_wizard_views.xml',
         'wizards/renouvellement_contrat_wizard_views.xml',
         'wizards/scan_alertes_wizard_views.xml',
@@ -37,6 +38,9 @@
         'views/contrat_views.xml',
         'views/alerte_views.xml',
         'views/menu_views.xml',
+    ],
+    'demo': [
+        'data/it_parc_demo.xml',
     ],
     'assets': {
         'web.assets_backend': [
